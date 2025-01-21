@@ -24,42 +24,71 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  margin: const EdgeInsets.all(10),
-                  child: Expanded(
-                    child: InkWell(
-                      highlightColor: Colors.transparent,
-                      splashColor: Colors.transparent,
-                      onTap: () {
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => const AttendanceScreen()));
-                      },
-                      child: const Column(
-                        children: [
-                          Image(
-                            image: AssetImage('assets/images/ic_attend.png'),
-                            height: 100,
-                            width: 100,
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            "Attendance Report",
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold
-                            ),
-                          )
-                        ],
-                      ),
-                    ),
-                  ),
+                _buildMenuItem(
+                  context, 
+                  label: 'Attandance Report', 
+                  imagePath: '/assets/images/ic_attend.png', 
+                  destination: AttendanceScreen() 
                 ),
                 const SizedBox(height: 40),
+                _buildMenuItem(
+                  context, 
+                  label: 'Attandance History', 
+                  imagePath: '/assets/images/ic_attendance_history.png', 
+                  destination: AttendanceScreen() 
+                ),
+                const SizedBox(height: 40),
+                _buildMenuItem(
+                  context, 
+                  label: 'Permission Report', 
+                  imagePath: '/assets/images/ic_permission.png', 
+                  destination: AttendanceScreen() 
+                ),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  Widget _buildMenuItem(
+    BuildContext context, 
+    {
+      required String imagePath,
+      required String label,
+      required Widget destination
+    }
+    ) {
+    return Container(
+                margin: const EdgeInsets.all(10),
+                child: Expanded(
+                  child: InkWell(
+                    highlightColor: Colors.transparent,
+                    splashColor: Colors.transparent,
+                    onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => destination));
+                    },
+                    child: Column(
+                      children: [
+                        Image(
+                          image: AssetImage(imagePath),
+                          height: 100,
+                          width: 100,
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          label,
+                          style: const TextStyle(
+                            fontSize: 14,
+                            fontWeight: FontWeight.bold
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              );
   }
 
   Future<bool> _onWillPop(BuildContext context) async {
@@ -107,6 +136,8 @@ class HomeScreen extends StatelessWidget {
         ]
       )
       )
-    );
+      // default value ketika semua kode yang ada di blok AlertDialog tidak tereksekusi karena bbrp hal
+    ) ??
+    false;
   }
 }
