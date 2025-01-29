@@ -13,7 +13,7 @@ void setDateTime(Function(String, String, String) onDateTimeSet) {
   onDateTimeSet(date, time, currentDate);
 }
 
-void setAttendStatus(Function(String) onStatusSet) {
+void setAttendanceStatus(Function(String) onStatusSet) {
   var dateNow = DateTime.now();
   var hour = int.parse(DateFormat('hh').format(dateNow));
   var minute = int.parse(DateFormat('mm').format(dateNow));
