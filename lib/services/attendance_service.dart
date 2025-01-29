@@ -67,8 +67,34 @@ Future<void> submitAttandanceReport(
               )
             ],
           ),
+          backgroundColor: Colors.blueAccent,
+          shape: const StadiumBorder(),
+          behavior: SnackBarBehavior.floating
         ));
       }
+    // menampilkan error yang mentrigger adalah system
+    }).catchError((error) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Row(
+          children: [
+            Icon(
+              Icons.error_outline_rounded,
+              color: Colors.white,
+            ),
+            SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                "Ups! $error",
+                style: const TextStyle(color: Colors.white),
+              ),
+            )
+          ],
+        ),
+        backgroundColor: Colors.blueAccent,
+        shape: const StadiumBorder(),
+        behavior: SnackBarBehavior.floating,
+      ));
+      Navigator.of(context).pop();
     });
 }
 
@@ -86,6 +112,7 @@ void showLoaderDialog(BuildContext context) {
         )
       ],
     ),
+
   );
   showDialog(
     barrierDismissible: false,
