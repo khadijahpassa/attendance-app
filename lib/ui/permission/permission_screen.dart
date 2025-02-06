@@ -1,3 +1,4 @@
+import 'package:attendance_app/services/location_service.dart';
 import 'package:flutter/material.dart';
 
 class PermissionScreen extends StatefulWidget {
@@ -13,7 +14,15 @@ class _PermissionScreenState extends State<PermissionScreen> {
     return const Placeholder();
   }
 
-  void requestPermissions(BuildContext context) {
-    // drop teh code for permission request here
+  void requestPermissions() async {
+    final hasPermission = await handleLocationPermission(context);
+
+    try {
+      if () {
+        
+      }
+    } catch (e) {
+      
+    }
   }
 }
