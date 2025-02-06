@@ -1,4 +1,4 @@
-import 'package:attendance_app/services/location_service.dart';
+import 'package:attendance_app/ui/permission/components/app_bar.dart';
 import 'package:flutter/material.dart';
 
 class PermissionScreen extends StatefulWidget {
@@ -15,7 +15,7 @@ class _PermissionScreenState extends State<PermissionScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      // appBar:, bikin appbar method
+      appBar: buildAppBar(context), 
       body: SingleChildScrollView(
         child: Card(
           color: Colors.white,
