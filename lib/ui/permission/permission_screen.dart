@@ -39,7 +39,7 @@ class _PermissionScreenState extends State<PermissionScreen> {
               SubmitButton(
                 size: size, 
                 nameController: TextEditingController(), 
-                formController: TextEditingController(), 
+                fromController: TextEditingController(), 
                 toController: TextEditingController(), 
                 dropValueCategories: "Dropdown Content", // default content di dropdown
                 dataCollection: FirebaseFirestore.instance.collection('dataCollectionValue')

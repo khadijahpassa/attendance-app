@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class SubmitButton extends StatelessWidget {
   final Size size;
   final TextEditingController nameController;
-  final TextEditingController formController;
+  final TextEditingController fromController;
   final TextEditingController toController;
   final String dropValueCategories;
   // 
@@ -16,7 +16,7 @@ class SubmitButton extends StatelessWidget {
     super.key, 
     required this.size, 
     required this.nameController, 
-    required this.formController, 
+    required this.fromController, 
     required this.toController, 
     required this.dropValueCategories, 
     required this.dataCollection
@@ -53,7 +53,7 @@ class SubmitButton extends StatelessWidget {
     return nameController.text.isNotEmpty &&
     // dropdown kategori izin (sakit/dijalan)
     dropValueCategories != "Please Choose: " &&
-    formController.text.isNotEmpty &&
+    fromController.text.isNotEmpty &&
     toController.text.isNotEmpty;
   }
 
@@ -108,7 +108,7 @@ class SubmitButton extends StatelessWidget {
         'name' : nameController.text,
         'description' : dropValueCategories,
         // toController.text --> untuk jam & menit
-        'timestamp' : '${formController.text} : ${toController.text}'
+        'timestamp' : '${fromController.text} : ${toController.text}'
       });
       Navigator.of(context).pop();
       _showSnackBar(
