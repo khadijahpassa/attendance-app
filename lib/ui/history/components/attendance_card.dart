@@ -17,7 +17,7 @@ class AttendanceHistoryCard extends StatelessWidget {
       onTap: () {
         DeleteDialog(
           documentId: data['id'], 
-          dataCollection: FirebaseFirestore.instance.collection('attendance')
+          dataCollection: FirebaseFirestore.instance.collection('attendance'),
         );
       },
       child: Card(
