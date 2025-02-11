@@ -1,4 +1,6 @@
 import 'package:attendance_app/services/data_service.dart';
+import 'package:attendance_app/ui/history/components/attendance_card.dart';
+import 'package:attendance_app/ui/history/components/delete_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +19,7 @@ class _AttendanceHistoryScreenState extends State<AttendanceHistoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Attendance History'),
+        title: const Text('Attendance History'),
       ),
       // untuk membungkus widget2 menjadi satu-kesatuan, untuk membuat widget menjadi ter-manage well
       // mirip kayak adapter di android development
@@ -39,7 +41,27 @@ class _AttendanceHistoryScreenState extends State<AttendanceHistoryScreen> {
           return ListView.builder(
             itemCount: data.length, // jumlah datanya, bisa nampilin secara spesifik dengan cara indexing
             itemBuilder: (context, index) {
-              
+              return AttendanceHistoryCard(
+                // untuk mendefinisikan data yang akan muncul di UI berdasarkan index atau posisi yang ada di db
+                data: data[index].data() as Map<String, dynamic>, 
+                onDelete: () {
+                  showDialog(
+                    context: context, 
+                    builder: (context) => DeleteDialog(
+                      // untuk menjadikan index sebagai id dari data yang ada di db
+                      documentId: data[index].id, 
+                      dataCollection: dataService.dataColletcion, 
+                      // digunakan untuk memperbarui state setelah terjadi penghapusan data dari db
+                      onConfirm: () { 
+                        setState(() {
+                          dataService.deleteData(data[index].id);
+                          Navigator.pop(context);
+                        });
+                      },
+                    )
+                  );
+                }
+              );
             },
           );
         }
